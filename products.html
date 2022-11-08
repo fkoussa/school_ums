@@ -1,0 +1,366 @@
+<!--Vue is a JavaScript framework for building user interfaces-->
+
+<!-- {{product.name}} syntax is the basic form of binding data in vue. -->
+
+<!-- It is a programming interface that allows us to create, change, or remove elements from the document. -->
+
+<!-- DIRECTIVES -->
+<!-- V-on binds JavaScript snippets with your vueJS-->
+<!-- V-on it runs in response to the DOM events-->
+<!-- V-bind: binds one or more attributes, or a component prop to an element -->
+<!-- V-html : updates elements inner html data with vue.js data -->
+<!-- V-if and v-else are normal if else statements that work with your html Dom elements-->
+<!-- V-model : enables two way data binding on form input elements -->
+<!-- V-show renders the elements -->
+<!-- V-hide hides the elements -->
+
+<!--Git is a Distributed version control system that allows developers to safely store code into a database -->
+
+<!-- 
+Three states of git are :
+  1. Modified
+    -when there's a change in the project files
+  2. Staged 
+    - when the altered files are marked to be pushed into the next commit 
+  3. Committed
+    - when the project is safely stored into the local database
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+    />
+
+    <title>Petshop</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <!-- Header -->
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" v-text="sitename"></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav d-flex">
+              <!-- Products Page Cart Button -->
+              <button
+                class="btn btn-primary"
+                v-if="page === 'products'"
+                v-on:click="navigator('cart')"
+              >
+                {{cartItemCount}}
+                <span class="fas fa-cart-plus"></span>
+                Show Cart
+              </button>
+
+              <!-- Cart Page Products Button -->
+              <button
+                class="btn btn-primary mx-3"
+                v-if="page === 'cart' || page === 'checkout' "
+                v-on:click="navigator('products')"
+              >
+                Products
+              </button>
+
+              <!--
+                TODO #1
+               -->
+              <button
+                class="btn btn-danger"
+                v-if="page === 'cart'"
+                v-if="cart.length !== 0"
+                v-on:click="navigator('checkout')"
+              >
+                Checkout
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <!-- End Header -->
+
+        <!-- Main -->
+        <main>
+          <div class="row" v-if="page === 'products'">
+            <!-- Single Card -->
+            <div v-for="product in products">
+              <div class="card" style="width: 18rem">
+                <img
+                  class="card-img-top"
+                  v-bind:src="product.image"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <div class="row">
+                    <p>Price: {{product.price}}</p>
+                  </div>
+                  <!-- No need for quantity -->
+                  <!-- <div class="row">
+                    <p>
+                      Quantity: <span v-bind="cartQuantity(product)"></span>
+                      
+                      Quantity: {{product.cartquantity ? product.basequantity :
+                      product.quantity }}
+                    </p>
+                  </div> -->
+                  <div class="row">
+                    <p>Cart Quantity: {{product.cartquantity}}</p>
+                  </div>
+                  <div class="col-3">
+                    <div class="row">
+                      <button
+                        class="btn btn-primary"
+                        v-bind:disabled="!canAdd"
+                        v-on:click="addToCart(product)"
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart -->
+          <div v-if="page === 'cart'">
+            <h1 style="text-align: center; margin-top: 15px">Your Cart</h1>
+            <div class="row d-flex text-center">
+              <div class="col-sm-12 mt-5">
+                <h3 v-if="cart.length === 0">No items in your cart!</h3>
+              </div>
+            </div>
+            <div
+              class="d-flex justify-content-center mt-5"
+              v-if="page === 'cart'"
+              v-for="product in cart"
+            >
+              <div class="card p-3">
+                <div class="about-product text-center mt-2">
+                  <img :src="product.image" width="250" />
+                  <div>
+                    <h4 style="margin-top: 15px">{{product.name}}</h4>
+                    <h6 class="mt-0 text-black-50">{{product.location}}</h6>
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <div class="d-flex justify-content-between p-price">
+                    <span>Price</span><span>{{product.price}}</span>
+                  </div>
+                  <!-- No need for space in this product -->
+                  <!-- <div class="d-flex justify-content-between p-price">
+                    <span>Available Spaces</span><span>{{product.space}}</span>
+                  </div> -->
+                  <div class="d-flex justify-content-between p-price">
+                    <span>Quantity</span><span>{{product.cartquantity}}</span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button
+                    class="btn btn-danger"
+                    v-on:click="removeFromCart(product)"
+                  >
+                    Remove
+                  </button>
+
+                  <button
+                    class="btn btn-warning"
+                    v-if="checkProductQuantity(product)"
+                    v-on:click="decreaseCartQuantity(product)"
+                  >
+                    <span class="fas fa-arrow-down"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- End Cart -->
+
+          <!-- ----------------------------------------------- -->
+          <!-- Use this for checkout -->
+          <!-- ----------------------------------------------- -->
+          <div v-if="page === 'checkout'">
+            <h1>Checkout Page</h1>
+
+            <div class="row">
+              <div class="d-flex flex-wrap flex-row mb-5">
+                <div
+                  class="d-flex justify-content-center mt-5 mx-2"
+                  v-for="product in cart"
+                >
+                  <div class="card p-3">
+                    <div class="about-product text-center mt-2">
+                      <img :src="product.image" width="250" />
+                      <div>
+                        <h4 style="margin-top: 15px">{{product.name}}</h4>
+                        <h6 class="mt-0 text-black-50">{{product.location}}</h6>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="d-flex justify-content-between p-price">
+                        <span>Price</span><span>{{product.price}}</span>
+                      </div>
+                      <!-- No need for spaces / quantity -->
+                      <!-- <div class="d-flex justify-content-between p-price">
+                        <span>Available Spaces</span
+                        ><span>{{product.space}}</span>
+                      </div> -->
+                      <div class="d-flex justify-content-between p-price">
+                        <span>Quantity</span
+                        ><span>{{product.cartquantity}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr />
+              <div class="col-6">
+                <p>
+                  <strong>First Name</strong>
+                  <input
+                    name="firstName"
+                    class="form-control"
+                    v-model="order.firstName"
+                  />
+                </p>
+
+                <p>
+                  <strong>Last Name</strong>
+                  <input
+                    name="lastName"
+                    class="form-control"
+                    v-model="order.lastName"
+                  />
+                </p>
+
+                <p>
+                  <strong>Address</strong>
+                  <input
+                    name="address"
+                    class="form-control"
+                    v-model="order.address"
+                  />
+                </p>
+
+                <p>
+                  <strong>Email:</strong>
+                  <input
+                    name="email"
+                    type="email"
+                    class="form-control"
+                    v-model="order.email"
+                  />
+                </p>
+              </div>
+              <div class="col-6">
+                <p>
+                  <strong>City</strong>
+                  <input
+                    name="city"
+                    class="form-control"
+                    v-model="order.city"
+                  />
+                </p>
+
+                <p>
+                  <strong>State</strong>
+                  <select
+                    name="state"
+                    class="form-select"
+                    v-model="order.state"
+                  >
+                    <option disablde value="State"></option>
+                    <option>AL</option>
+                    <option>AR</option>
+                    <option>CA</option>
+                    <option>WA</option>
+                  </select>
+                </p>
+
+                <p>
+                  <strong>Zip/Postal Code:</strong>
+                  <input
+                    name="zip"
+                    type="number"
+                    class="form-control"
+                    v-model="order.zip"
+                  />
+                </p>
+
+                <p>
+                  <strong>Phone Number:</strong>
+                  <input
+                    name="phone"
+                    type="number"
+                    class="form-control"
+                    v-model="order.phone"
+                  />
+                </p>
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+              <h2>Order Information</h2>
+
+              <div class="col-6">
+                <p>First Name: {{ order.firstName }}</p>
+                <p>Last Name: {{ order.lastName }}</p>
+                <p>Address: {{ order.address }}</p>
+              </div>
+              <div class="col-6">
+                <p>City Name: {{ order.city }}</p>
+                <p>State Name: {{ order.state }}</p>
+                <p>Zip/Postal Code: {{ order.zip }}</p>
+              </div>
+              <div class="col-6">
+                <p>Email: {{ order.email }}</p>
+              </div>
+
+              <div class="col-6">
+                <p>Phone Number: {{ order.phone }}</p>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button v-on:click="initiatecheckout()" class="btn btn-primary">
+                Checkout
+              </button>
+            </div>
+          </div>
+          <!-- end Checkout -->
+        </main>
+        <!-- End Main -->
+      </div>
+    </div>
+    <div id="app2"></div>
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
