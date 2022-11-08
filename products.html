@@ -1,6 +1,6 @@
 <!--Vue is a JavaScript framework for building user interfaces-->
 
-<!-- {{product.name}} syntax is the basic form of binding data in vue. -->
+<!-- {{product.subject}} syntax is the basic form of binding data in vue. -->
 
 <!-- It is a programming interface that allows us to create, change, or remove elements from the document. -->
 
@@ -48,7 +48,6 @@ Three states of git are :
     <div class="container">
       <div id="app">
         <!-- Header -->
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" v-text="sitename"></a>
           <button
@@ -98,46 +97,49 @@ Three states of git are :
             </div>
           </div>
         </nav>
-
         <!-- End Header -->
 
         <!-- Main -->
         <main>
+          <!-- 
+          Products
+         -->
           <div class="row" v-if="page === 'products'">
             <!-- Single Card -->
             <div v-for="product in products">
-              <div class="card" style="width: 18rem">
-                <img
-                  class="card-img-top"
-                  v-bind:src="product.image"
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">{{product.name}}</h5>
-                  <div class="row">
-                    <p>Price: {{product.price}}</p>
-                  </div>
-                  <!-- No need for quantity -->
-                  <!-- <div class="row">
-                    <p>
-                      Quantity: <span v-bind="cartQuantity(product)"></span>
-                      
-                      Quantity: {{product.cartquantity ? product.basequantity :
-                      product.quantity }}
-                    </p>
-                  </div> -->
-                  <div class="row">
-                    <p>Cart Quantity: {{product.cartquantity}}</p>
-                  </div>
-                  <div class="col-3">
+              <div class="row my-2">
+                <div class="card" style="width: 18rem">
+                  <img
+                    class="card-img-top"
+                    v-bind:src="product.image"
+                    alt="Subject Image"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.subject}}</h5>
                     <div class="row">
-                      <button
-                        class="btn btn-primary"
-                        v-bind:disabled="!canAdd"
-                        v-on:click="addToCart(product)"
-                      >
-                        Add
-                      </button>
+                      <p>Location: {{product.location}}</p>
+                    </div>
+                    <div class="row">
+                      <p>Price: ${{product.price}}</p>
+                    </div>
+                    <div class="row">
+                      <p>
+                        Spaces: {{product.space}}</span>
+                      </p>
+                    </div>
+                    <div class="row">
+                      <p>Cart Quantity: {{product.cartquantity}}</p>
+                    </div>
+                    <div class="col-3">
+                      <div class="row">
+                        <button
+                          class="btn btn-primary"
+                          v-bind:disabled="!canAdd"
+                          v-on:click="addToCart(product)"
+                        >
+                          Add
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -162,7 +164,7 @@ Three states of git are :
                 <div class="about-product text-center mt-2">
                   <img :src="product.image" width="250" />
                   <div>
-                    <h4 style="margin-top: 15px">{{product.name}}</h4>
+                    <h4 style="margin-top: 15px">{{product.subject}}</h4>
                     <h6 class="mt-0 text-black-50">{{product.location}}</h6>
                   </div>
                 </div>
@@ -216,7 +218,7 @@ Three states of git are :
                     <div class="about-product text-center mt-2">
                       <img :src="product.image" width="250" />
                       <div>
-                        <h4 style="margin-top: 15px">{{product.name}}</h4>
+                        <h4 style="margin-top: 15px">{{product.subject}}</h4>
                         <h6 class="mt-0 text-black-50">{{product.location}}</h6>
                       </div>
                     </div>
