@@ -7,6 +7,7 @@ let webstore = new Vue({
     showProducts: true,
     cart: [],
     checkout: [],
+    test: false,
     order: {
       firstName: "",
       lastName: "",
@@ -58,6 +59,7 @@ let webstore = new Vue({
         return true;
       } else {
         this.cart.splice(product, 1);
+        return false;
       }
     },
 
@@ -103,6 +105,16 @@ let webstore = new Vue({
     },
     canAdd() {
       return this.products.quantity != 0;
+    },
+
+    isCartEmpty: function () {
+      if (cart.length > 0) {
+        console.log("Cart length is greater than 0");
+        return false;
+      } else {
+        console.log("Cart length is less than 0");
+        return true;
+      }
     },
   },
 });
