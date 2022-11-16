@@ -122,36 +122,41 @@ Three states of git are :
          -->
           <div id="products" class="d-flex flex-row flex-wrap justify-content-between" v-if="page === 'products'">
             <!-- Single Card -->
-            
-            <div v-for="product in products" class="my-3 p-3">
+            <input
+                    name="search"
+                    class="form-control"
+                    placeholder="search"
+                    v-model="search"
+                    ></input>
+            <div v-for="item in productList" class="my-3 p-3">
                 <div class="card" style="width: 14rem">
                   <img
                     class="card-img-top img-fluid"
-                    v-bind:src="product.image"
+                    v-bind:src="item.image"
                     alt="Subject Image"
                   />
                   <div class="card-body">
-                    <h5 class="card-title">{{product.subject}}</h5>
+                    <h5 class="card-title">{{item.subject}}</h5>
                     <div class="row">
-                      <p>Location: {{product.location}}</p>
+                      <p>Location: {{item.location}}</p>
                     </div>
                     <div class="row">
-                      <p>Price: ${{product.price}}</p>
+                      <p>Price: ${{item.price}}</p>
                     </div>
                     <div class="row">
                       <p>
-                        Spaces: {{product.space}}</span>
+                        Spaces: {{item.space}}</span>
                       </p>
                     </div>
                     <div class="row">
-                      <p>Cart Quantity: {{product.cartquantity}}</p>
+                      <p>Cart Quantity: {{item.cartquantity}}</p>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
                       <div class="row">
                         <button
                           class="btn btn-primary"
                           v-bind:disabled="!canAdd"
-                          v-on:click="addToCart(product)"
+                          v-on:click="addToCart(item)"
                         >
                           Add
                         </button>

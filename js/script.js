@@ -8,6 +8,7 @@ let webstore = new Vue({
     cart: [],
     checkout: [],
     test: false,
+    search: "",
     order: {
       firstName: "",
       lastName: "",
@@ -115,6 +116,13 @@ let webstore = new Vue({
         console.log("Cart length is less than 0");
         return true;
       }
+    },
+
+    // Search functionality
+    productList() {
+      return this.products.filter((item) => {
+        return item.subject.toLowerCase().includes(this.search.toLowerCase());
+      });
     },
   },
 });
