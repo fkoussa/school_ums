@@ -121,7 +121,14 @@ let webstore = new Vue({
     // Search functionality
     productList() {
       return this.products.filter((item) => {
-        return item.subject.toLowerCase().includes(this.search.toLowerCase());
+        try {
+          return (
+            item.subject.toLowerCase().includes(this.search.toLowerCase()) ||
+            item.location.toLowerCase().includes(this.search.toLowerCase())
+          );
+        } catch (err) {
+          console.log(err);
+        }
       });
     },
   },
