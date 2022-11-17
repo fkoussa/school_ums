@@ -67,7 +67,7 @@ Three states of git are :
               <!-- products Page Cart Button -->
               <button
                 class="btn btn-primary"
-                v-if="page === 'products'"
+                v-if="page === 'products' && cart.length > 0"
                 v-on:click="navigator('cart')"
               >
                 {{cartItemCount}}
@@ -120,14 +120,40 @@ Three states of git are :
           <!-- 
           products
          -->
-          <div id="products" class="d-flex flex-row flex-wrap " v-if="page === 'products'">
-            <!-- Single Card -->
-            <input
+         <div class="row px-5" v-if="page === 'products'">
+                <div class="col-md-6">
+                <a>Search</a>
+                <input
                     name="search"
                     class="form-control"
                     placeholder="search"
                     v-model="search"
-                    ></input>
+                    />
+              </div>
+              <div class="col-md-6">
+                <a>Sort By: </a>
+                <select class="form-select" v-model="sortBy">
+                    <option value="subject"> Subject</option>
+                        <option value="price">Price</option>
+                        <option value="space">Availability</option>
+                        <option value="location">location</option>
+                    </select>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="btn-group d-flex justify-content-around">
+                    <a><input type="radio" value="asc" v-model="sort_asc_desc">Ascending</a>
+                    <a><input type="radio" value="desc" v-model="sort_asc_desc">Descending</a>
+                 </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+          </div>
+          <div id="products" class="d-flex flex-row flex-wrap justify-content-center" v-if="page === 'products'">
+            <!-- Single Card -->
+            
             <div v-for="item in productList" class="my-3 p-3">
                 <div class="card" style="width: 14rem">
                   <img
@@ -164,10 +190,10 @@ Three states of git are :
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
           </div>
 
-          <!-- Cart -->
+          <!-- Cart Page -->
           <div v-if="page === 'cart'">
             <h1 style="text-align: center; margin-top: 15px">Your Cart</h1>
             <div class="row d-flex text-center">
@@ -175,8 +201,9 @@ Three states of git are :
                 <h3 v-if="cart.length === 0">No items in your cart!</h3>
               </div>
             </div>
-            <div
-              class="d-flex justify-content-center mt-5"
+            <div class="row">
+              <div
+              class="d-flex justify-content-center"
               v-if="page === 'cart'"
               v-for="product in cart"
             >
@@ -221,6 +248,7 @@ Three states of git are :
                   </button>
                 </div>
               </div>
+            </div>
             </div>
           </div>
 

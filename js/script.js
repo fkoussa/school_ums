@@ -5,6 +5,8 @@ let webstore = new Vue({
     page: "products",
     products: products,
     showProducts: true,
+    sortBy: "subject",
+    sort_asc_desc: "asc",
     cart: [],
     checkout: [],
     test: false,
@@ -120,16 +122,52 @@ let webstore = new Vue({
 
     // Search functionality
     productList() {
-      return this.products.filter((item) => {
-        try {
-          return (
-            item.subject.toLowerCase().includes(this.search.toLowerCase()) ||
-            item.location.toLowerCase().includes(this.search.toLowerCase())
-          );
-        } catch (err) {
-          console.log(err);
-        }
-      });
+      if (this.search) {
+        return this.products.filter((item) => {
+          try {
+            return (
+              item.subject.toLowerCase().includes(this.search.toLowerCase()) ||
+              item.location.toLowerCase().includes(this.search.toLowerCase())
+            );
+          } catch (err) {
+            console.log(err);
+          }
+        });
+      } else if (this.sortBy === "subject") {
+        return this.products.sort((a, b) => {
+          if (this.sort_asc_desc === "asc") {
+            return a.subject.localeCompare(b.subject);
+          } else if (this.sort_asc_desc === "desc") {
+            return b.subject.localeCompare(a.subject);
+          }
+        });
+      } else if (this.sortBy === "price") {
+        return this.products.sort((a, b) => {
+          if (this.sort_asc_desc === "asc") {
+            return a.price - b.price;
+          } else if (this.sort_asc_desc === "desc") {
+            return b.price - a.price;
+          }
+        });
+      } else if (this.sortBy === "space") {
+        return this.products.sort((a, b) => {
+          if (this.sort_asc_desc === "asc") {
+            return a.space - b.space;
+          } else if (this.sort_asc_desc === "desc") {
+            return b.space - a.space;
+          }
+        });
+      } else if (this.sortBy === "location") {
+        return this.products.sort((a, b) => {
+          if (this.sort_asc_desc === "asc") {
+            return a.location - b.location;
+          } else if (this.sort_asc_desc === "desc") {
+            return b.location - a.location;
+          }
+        });
+      } else {
+        return this.products;
+      }
     },
   },
 });
