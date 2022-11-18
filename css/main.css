@@ -1,3 +1,43 @@
+.primary-background {
+  background-color: #0f0e17;
+}
+
+.headline-color {
+  color: #fffffe;
+}
+
+.paragraph-color {
+  color: #a7a9be;
+}
+
+.btn-primary {
+  background-color: #ff8906;
+  border-color: #ff8906;
+  color: #fffffe;
+}
+
+.btn-primary:hover {
+  background-color: #e27900;
+  border-color: #e27900;
+  color: #fffffe;
+}
+
+.btn-primary:active {
+  background-color: #ff9d2c;
+  border-color: #ff9d2c;
+  color: #fffffe;
+}
+
+.btn-secondary {
+  background-color: #f25f4c;
+  border-color: #f25f4c;
+  color: #fffffe;
+}
+
+a {
+  font-weight: 600;
+}
+
 .arrow {
   text-align: center;
   margin: 8% 0;
@@ -10,7 +50,7 @@
 
 .arrow a {
   text-decoration: none;
-  color: black;
+  color: #ff8906;
 }
 @keyframes bounce {
   0%,

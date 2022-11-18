@@ -95,6 +95,8 @@ let webstore = new Vue({
           phone: "",
           state: "",
         };
+        alert("Checkout Succeeded!");
+        this.cart = [];
         this.navigator("products");
       } else {
         alert("Validate info please");

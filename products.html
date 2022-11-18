@@ -1,31 +1,3 @@
-<!--Vue is a JavaScript framework for building user interfaces-->
-
-<!-- {{product.subject}} syntax is the basic form of binding data in vue. -->
-
-<!-- It is a programming interface that allows us to create, change, or remove elements from the document. -->
-
-<!-- DIRECTIVES -->
-<!-- V-on binds JavaScript snippets with your vueJS-->
-<!-- V-on it runs in response to the DOM events-->
-<!-- V-bind: binds one or more attributes, or a component prop to an element -->
-<!-- V-html : updates elements inner html data with vue.js data -->
-<!-- V-if and v-else are normal if else statements that work with your html Dom elements-->
-<!-- V-model : enables two way data binding on form input elements -->
-<!-- V-show renders the elements -->
-<!-- V-hide hides the elements -->
-
-<!--Git is a Distributed version control system that allows developers to safely store code into a database -->
-
-<!-- 
-Three states of git are :
-  1. Modified
-    -when there's a change in the project files
-  2. Staged 
-    - when the altered files are marked to be pushed into the next commit 
-  3. Committed
-    - when the project is safely stored into the local database
--->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,12 +17,11 @@ Three states of git are :
 
     <title>School UMS</title>
   </head>
-  <body>
-    <div class="container">
+  <body class="primary-background">
       <div id="app">
         <!-- Header -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" v-text="sitename"></a>
+          <a class="navbar-brand mx-5" v-text="sitename"></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -101,11 +72,11 @@ Three states of git are :
         <!-- End Header -->
 
 
-          <section v-if="page === 'products'" class="py-5 text-center container jumbotron">
+          <section v-if="page === 'products'" class="py-5 text-center container jumbotron ">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">School UMS</h1>
-                <p class="lead text-muted">A platform that allows students and their parents to look for after school classes and activities</p>
+                <h1 class="fw-bold headline-color ">School UMS</h1>
+                <p class="lead paragraph-color">A platform that allows students and their parents to look for after school classes and activities</p>
                 <div class="arrow bounce">
                   <a class="fa fa-arrow-down fa-2x" href="#products"></a>
                 </div>
@@ -114,19 +85,19 @@ Three states of git are :
           </section>
 
         <!-- Main -->
-        <main class="bg-light py-5">
+        <main class="bg-light py-5 ">
         
         
           <!-- 
-          products
+          Products Page
          -->
-         <div class="row px-5" v-if="page === 'products'">
+         <div class="row px-5"  v-if="page === 'products' ">
                 <div class="col-md-6">
                 <a>Search</a>
                 <input
                     name="search"
                     class="form-control"
-                    placeholder="search"
+                    placeholder="Search"
                     v-model="search"
                     />
               </div>
@@ -201,9 +172,9 @@ Three states of git are :
                 <h3 v-if="cart.length === 0">No items in your cart!</h3>
               </div>
             </div>
-            <div class="row">
+            <div class="d-flex flex-row justify-content-around">
               <div
-              class="d-flex justify-content-center"
+              class="d-flex"
               v-if="page === 'cart'"
               v-for="product in cart"
             >
@@ -229,21 +200,18 @@ Three states of git are :
                 </div>
                 <div class="d-flex justify-content-between mt-4">
                   <button
-                    class="btn btn-danger"
+                    class="btn btn-secondary"
                     v-on:click="removeFromCart(product)"
                   >
                     Remove
                   </button>
 
                   <button
-                    class="btn btn-warning"
+                    class="btn btn-primary"
                     v-if="checkProductQuantity(product)"
                     v-on:click="decreaseCartQuantity(product)"
                   >
-                     <!-- <button
-                    class="btn btn-warning"
-                    v-on:click="decreaseCartQuantity(product)"
-                  > -->
+                     
                     <span class="fas fa-arrow-down"></span>
                   </button>
                 </div>
@@ -257,11 +225,12 @@ Three states of git are :
           <!-- 
             Checkout
            -->
-          <div v-if="page === 'checkout'">
+          <div class="container">
+            <div v-if="page === 'checkout'">
             <h1>Checkout Page</h1>
 
             <div class="row">
-              <div class="d-flex flex-wrap flex-row mb-5">
+              <div class="d-flex flex-row justify-content-around mb-5">
                 <div
                   class="d-flex justify-content-center mt-5 mx-2"
                   v-for="product in cart"
@@ -408,11 +377,11 @@ Three states of git are :
               </button>
             </div>
           </div>
+          </div>
           <!-- end Checkout -->
         </main>
         <!-- End Main -->
       </div>
-    </div>
     <script src="js/products.js"></script>
     <script src="js/script.js"></script>
   </body>
