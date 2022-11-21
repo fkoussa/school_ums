@@ -6,7 +6,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 283,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -16,7 +16,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 182,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -26,7 +26,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 282,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -36,7 +36,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 131,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -46,7 +46,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 62,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -56,7 +56,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 137,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -66,7 +66,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 200,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -76,7 +76,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 137,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -86,7 +86,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 137,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
   {
@@ -96,7 +96,7 @@ const products = [
     stock: 5,
     space: 5,
     price: 184,
-    image: "https://api.lorem.space/image/book?w=150&h=220",
+    image: "https://api.lorem.space/image/book?w=150&h=200",
     cartquantity: 0,
   },
 ];

@@ -34,7 +34,7 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="collapse navbar-collapse justify-content-end px-5" id="navbarNavAltMarkup">
             <div class="navbar-nav d-flex">
               <!-- products Page Cart Button -->
               <button
@@ -53,6 +53,8 @@
                 v-if="page === 'cart' || page === 'checkout' "
                 v-on:click="navigator('products')"
               >
+              <i class="fas fa-arrow-left"></i>
+
                 Products
               </button>
 
@@ -66,6 +68,7 @@
                 v-on:click="navigator('checkout')"
               >
                 Checkout
+                <i class="fas fa-arrow-right"></i>
               </button>
             </div>
           </div>
