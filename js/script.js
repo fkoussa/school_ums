@@ -28,6 +28,8 @@ let webstore = new Vue({
       // console.log(product.id);
       if (!this.cart.includes(product)) {
         this.cart.push(product);
+        product.cartquantity +=1;
+        product.space--;
         console.log("cart doesnt contain product");
       } else if (product.cartquantity == product.stock) {
         // Check if product spaces == cartquantity
