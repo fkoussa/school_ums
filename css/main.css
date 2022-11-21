@@ -38,6 +38,17 @@ a {
   font-weight: 600;
 }
 
+
+.sticky-top.scrolled {
+  background-color: #0f0e17 !important;
+  transition: background-color 200ms linear;
+}
+
+.scrolled a {
+  color: #fffffe;
+}
+
+
 .arrow {
   text-align: center;
   margin: 8% 0;
@@ -47,6 +58,7 @@ a {
   -webkit-animation: bounce 2s infinite;
   animation: bounce 2s infinite;
 }
+
 
 .arrow a {
   text-decoration: none;

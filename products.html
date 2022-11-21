@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
     />
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/main.css">
 
     <title>School UMS</title>
@@ -20,7 +21,7 @@
   <body class="primary-background">
       <div id="app">
         <!-- Header -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
           <a class="navbar-brand mx-5" v-text="sitename"></a>
           <button
             class="navbar-toggler"
@@ -384,5 +385,13 @@
       </div>
     <script src="js/products.js"></script>
     <script src="js/script.js"></script>
+    <script>
+      $(function () {
+        $(document).scroll(function () {
+            var $nav = $(".sticky-top");
+            $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+          });
+        });
+    </script>
   </body>
 </html>
