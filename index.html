@@ -22,7 +22,7 @@
       <div id="app">
         <!-- Header -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-          <a class="navbar-brand mx-5" v-text="sitename"></a>
+          <a class="navbar-brand mx-5" v-text="sitename" v-on:click="navigator('products')"></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -111,7 +111,7 @@
                     <option value="subject"> Subject</option>
                         <option value="price">Price</option>
                         <option value="space">Availability</option>
-                        <option value="location">location</option>
+                        <option value="location">Location</option>
                     </select>
 
                 <div class="row">

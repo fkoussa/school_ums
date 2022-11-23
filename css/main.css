@@ -6,6 +6,13 @@
   color: #fffffe;
 }
 
+.headline-color::selection{
+  columns: #fffffe;
+}
+.headline-color:hover{
+  columns: #fffffe;
+}
+
 .paragraph-color {
   color: #a7a9be;
 }
