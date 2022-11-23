@@ -24,11 +24,10 @@ let webstore = new Vue({
   methods: {
     // Add product to cart
     addToCart(product) {
-      // this.$emit("addItemToCart", product);
       // console.log(product.id);
       if (!this.cart.includes(product)) {
         this.cart.push(product);
-        product.cartquantity +=1;
+        product.cartquantity += 1;
         product.space--;
         console.log("cart doesnt contain product");
       } else if (product.cartquantity == product.stock) {
@@ -101,7 +100,7 @@ let webstore = new Vue({
         this.cart = [];
         this.navigator("products");
       } else {
-        alert("Validate info please");
+        alert("Validate Information Beofre Checking Out");
         this.page = "checkout";
       }
     },
