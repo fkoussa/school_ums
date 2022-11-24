@@ -82,24 +82,9 @@ let webstore = new Vue({
 
       var first_name_validation = name_regex.test(this.order.firstName);
       var last_name_validation = name_regex.test(this.order.lastName);
-      var phone_number_validation = phone_regex.test(this.order.phone_number);
+      var phone_number_validation = phone_regex.test(this.order.phone);
 
-      if (first_name_validation !== false) {
-        if (last_name_validation !== false) {
-          if (phone_number_validation !== false) {
-            initiatecheckout();
-          } else {
-            alert("Please verify your phone number.");
-          }
-        } else {
-          alert("Please verify your last name");
-        }
-      } else {
-        alert("Please verify your first name.");
-      }
-    },
-
-    initiatecheckout() {
+      // Check if fields arent empty
       if (
         this.order.firstName &&
         this.order.lastName &&
@@ -109,31 +94,41 @@ let webstore = new Vue({
         this.order.phone &&
         this.order.state
       ) {
-        // // Validate checkout info using regex
-        // validateCheckoutInformation(
-        //   this.order.firstName,
-        //   this.order.lastName,
-        //   this.order.phone
-        // );
+        // Regex field validation
+        if (first_name_validation !== false) {
+          if (last_name_validation !== false) {
+            if (phone_number_validation !== false) {
 
-        this.checkout.push(this.order);
-        this.order = {
-          firstName: "",
-          lastName: "",
-          address: "",
-          city: "",
-          email: "",
-          phone: "",
-          state: "",
-        };
-        alert("Checkout Succeeded!");
-        this.cart = [];
-        this.navigator("products");
-      } else {
-        alert("Validate Information Beofre Checking Out");
+              // Initiate checkout
+              this.checkout.push(this.order);
+              this.order = {
+                firstName: "",
+                lastName: "",
+                address: "",
+                city: "",
+                email: "",
+                phone: "",
+                state: "",
+              };
+              alert("Checkout Succeeded!");
+              this.cart = [];
+              this.navigator("products");
+            } else {
+              alert("Please verify your phone number.");
+            }
+          } else {
+            alert("Please verify your last name");
+          }
+        } else {
+          alert("Please verify your first name.");
+        }
+      }  else {
+        alert("Fill in Information Before Checking Out");
         this.page = "checkout";
       }
+      
     },
+
   },
   computed: {
     cartItemCount: function () {
