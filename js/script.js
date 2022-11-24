@@ -1,4 +1,4 @@
-let webstore = new Vue({
+let schoolums = new Vue({
   el: "#app",
   data: {
     sitename: "School UMS",
@@ -98,7 +98,6 @@ let webstore = new Vue({
         if (first_name_validation !== false) {
           if (last_name_validation !== false) {
             if (phone_number_validation !== false) {
-
               // Initiate checkout
               this.checkout.push(this.order);
               this.order = {
@@ -122,13 +121,11 @@ let webstore = new Vue({
         } else {
           alert("Please verify your first name.");
         }
-      }  else {
+      } else {
         alert("Fill in Information Before Checking Out");
         this.page = "checkout";
       }
-      
     },
-
   },
   computed: {
     cartItemCount: function () {

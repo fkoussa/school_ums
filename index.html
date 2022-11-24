@@ -39,7 +39,7 @@
               <!-- products Page Cart Button -->
               <button
                 class="btn btn-primary"
-                v-if="page === 'products' && cart.length > 0"
+                v-if="(page === 'products' || page === 'checkout') && cart.length > 0"
                 v-on:click="navigator('cart')"
               >
                 {{cartItemCount}}
