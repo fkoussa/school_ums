@@ -76,6 +76,29 @@ let webstore = new Vue({
       return product.cartquantity;
     },
 
+    validateCheckoutInformation() {
+      let name_regex = /^[A-Za-z\s]+$/;
+      let phone_regex = /^[0-9]+$/;
+
+      var first_name_validation = name_regex.test(this.order.firstName);
+      var last_name_validation = name_regex.test(this.order.lastName);
+      var phone_number_validation = phone_regex.test(this.order.phone_number);
+
+      if (first_name_validation !== false) {
+        if (last_name_validation !== false) {
+          if (phone_number_validation !== false) {
+            initiatecheckout();
+          } else {
+            alert("Please verify your phone number.");
+          }
+        } else {
+          alert("Please verify your last name");
+        }
+      } else {
+        alert("Please verify your first name.");
+      }
+    },
+
     initiatecheckout() {
       if (
         this.order.firstName &&
@@ -86,6 +109,13 @@ let webstore = new Vue({
         this.order.phone &&
         this.order.state
       ) {
+        // // Validate checkout info using regex
+        // validateCheckoutInformation(
+        //   this.order.firstName,
+        //   this.order.lastName,
+        //   this.order.phone
+        // );
+
         this.checkout.push(this.order);
         this.order = {
           firstName: "",
