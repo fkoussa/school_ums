@@ -55,6 +55,10 @@ a {
   color: #fffffe;
 }
 
+img {
+  min-height: 234.34px !important;
+  max-height: 234.34px !important;
+}
 
 .arrow {
   text-align: center;

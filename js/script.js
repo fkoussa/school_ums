@@ -160,6 +160,8 @@ let schoolums = new Vue({
         });
       } else if (this.sortBy === "subject") {
         return this.products.sort((a, b) => {
+          console.log("a: " + a.subject);
+          console.log("b: " + b.suject )
           if (this.sort_asc_desc === "asc") {
             return a.subject.localeCompare(b.subject);
           } else if (this.sort_asc_desc === "desc") {
